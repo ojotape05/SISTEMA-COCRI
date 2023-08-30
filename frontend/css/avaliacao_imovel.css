@@ -1,0 +1,121 @@
+html,
+body {
+    height: 100vh;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7vh;
+    box-shadow: none;
+    background-color: white;
+}
+
+main {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    min-height: 94vh;
+    background-color: #f0f0f0;
+}
+
+#divPendencia{
+    margin-top: 15px;
+    display: none;
+    justify-content: center;
+}
+
+#formDiv{
+    height: 100%;
+    justify-content: flex-start;
+    margin-top: 0px;
+}
+
+#calc-div, #apontamento-div{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: white;
+}
+
+#calc-div{
+    width: 50%;
+    border-left: solid 1px #cccccc;
+}
+
+#apontamento-div{
+    width: 98%;
+}
+
+#valores-div, #tarifa-div {
+    padding: 10px;
+    background-color: white;
+}
+
+#valores-div{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+#tarifa-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-top: solid 1px #cccccc;
+}
+
+#tipoApontamento{
+    font-size: 14px;
+}
+
+
+.card {
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    display: flex;
+    justify-content: center;
+    padding-inline: 3%;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+}
+
+label,
+.form-control {
+    font-size: 1.1rem;
+}
+
+#avaliacaoImovel{
+    width: 80%;
+    height: 80%;
+}
+
+.obss{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #8080801c;
+    resize: none;
+    text-align: center;
+}
+
+@media (max-width: 767px){
+    ul{
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 576px) {
+    header {
+        height: 11% !important;
+    }
+    .form-control{
+        font-size: 11px;
+    }
+}
+

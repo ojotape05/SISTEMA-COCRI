@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Duas Colunas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link href="../css/proposta_negocio.css" rel="stylesheet">
+</head>
+
+<body>
+    <header class="container" style="box-shadow: none;">
+        <div style="width: 100%;" class="d-flex flex-wrap justify-content-center py-3 border-bottom">
+            <div href="/" class="d-flex align-items-center  mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <span class="fs-4">Proposta de Negócio</span>
+            </div>
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="#" class="nav-link"> Home </a></li>
+                <li class="nav-item"><a href="abertura_processo.html" class="nav-link">Abertura</a></li>
+                <li class="nav-item"><a href="avaliacao_imovel.html" class="nav-link">Avaliação</a></li>
+                <li class="nav-item"><a href="proposta_negocio.html" class="nav-link active"
+                    aria-current="page"> Proposta de Negócio </a></li>
+                <li class="nav-item"><a href="triagem.html" class="nav-link" >Análise de Documentos</a></li>
+            </ul>
+        </div>
+    </header>
+    <main style="display: flex;justify-content: center;align-items: center;">
+        <div class="container" style="height: 96%;padding:0">
+           <div style="display: flex;height: 90vh;width:100%">
+                <div class="column left-column">
+                    <form class="form">
+                        <label for="input1">Código do Bem:</label>
+                        <div class="border-bottom" style="display:flex;">
+                            <input type="text" id='codBem' class="form-control" style="width:80px" maxlength="6" required>
+                            <input type="text" id='tipoBem' class="form-control" style="margin-left:15px;width:450px" required readonly>
+                        </div>
+                        
+                        <div id="divAvaliacao" class="border-bottom">
+                            <div style="display: flex;height:100%;width:100%;flex-direction: column;">
+                                
+                                <div class="form-floating" style="display:flex;width: 360px;">
+                                    <div style="width: 130px;">
+                                        <label for="dataAvaliacaoImovel"> Data da avaliação </label>
+                                        <input id="dataAvaliacaoImovel" type="date" class="form-control" required readonly>
+                                    </div>
+                                    <div style=" margin-left: 15px">
+                                        <label for="dataAvaliacaoImovel"> Valor Avaliação </label>
+                                        <input id='valorAvaliacao' type="text" class="form-control" required readonly>
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-floating" style="display:flex;margin-top: 15px;">
+                                    <div style="width: 150px;">
+                                        <label for="dataAvaliacaoImovel"> CNPJ </label>
+                                        <input id="cnpjAvaliadora" type="text" class="form-control avaliadoraInfos" maxlength="14" required readonly>
+                                    </div>
+                                    <div style="width: 350px;">
+                                        <label for="dataAvaliacaoImovel"> Empresa avaliadora </label>
+                                        <input id="empresaAvaliadora" style="width:100%; margin-left: 15px" type="text" class="form-control avaliadoraInfos" required readonly>
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+    
+                        <label for="input3">Descrição do Imóvel:</label>
+                        <div class="border-bottom">
+                            <textarea style="height: 75px;resize: none;" type="text" class="form-control" id="descricaoImovel"></textarea>
+                        </div>
+    
+                        <label for="input1">Mutuário:</label>
+                        <div class="border-bottom"style="display:flex">
+                            <input id="numMutuario" type="tel" class="form-control mutuarioInfos" style="width:150px" maxlength="14" required readonly>
+                            <input id="nomeMutuario" type="text" class="form-control mutuarioInfos" style="width:380px;margin-left:10px" required readonly></input>
+                        </div>
+                        
+                        <div class="border-bottom">
+                            <div style="display: flex;">
+                                <div style="width: 20%">
+                                    <label for="input5">Produto</label>
+                                    <input type="text" class="form-control" id="produto" placeholder="" maxlength="5" required readonly>
+                                </div>
+                                
+                                <div style="width: 20%;margin-left: 10px">
+                                    <label for="input5">Prazo</label>
+                                    <input type="text" class="form-control" id="prazo" placeholder="" maxlength="5" required readonly>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex;margin-top:10px">
+                                <div style="width: 30%">
+                                    <label for="input5">Valor Financiamento</label>
+                                    <input type="text" class="form-control" id="valorFinanciamento" placeholder="" maxlength="5" required readonly>
+                                </div>
+
+                                <div style="width: 15%;margin-left: 10px">
+                                    <label for="input5">SAC/PRICE</label>
+                                    <select class="form-control" id="tipodeamortizacao" readonly>
+                                        <option value="sac">SAC</option>
+                                        <option value="price">PRICE</option>
+                                    </select>
+                                </div>
+
+                                <div style="width: 20%;margin-left: 10px">
+                                    <label for="input5">Taxa</label>
+                                    <input type="text" class="form-control" id="taxa" placeholder="" maxlength="5" required readonly>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex;justify-content: center;">
+                            <button type="submit" id="buttonPrinter"> <i class="gg-printer"></i></button>
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="column right-column">
+                    <div class="note-page">
+                        <!-- Conteúdo da página do caderno -->
+                        <div id="conteudoPN">
+                            <h5 style="font-weight: bold;">SOLICITAÇÃO DE INCLUSÃO DA PN - MUT: <b></b></h5>
+                            <p> Prezados, boa tarde! </p>
+                            <p>Solicitamos providenciar a inclusão da P.N para o processo de crédito imobiliário do promitente mutuário <b></b>.</p>
+                            <p>Incluir a garantia no sistema GBG02, conforme os dados abaixo:</p>
+                            <br>
+                            <p>Código do bem: <b>60 (BEM1)</b></p>
+                            <p>Código da garantia: <b>30 (Alienação Fiduciária)</b></p>
+                            <p>Percentual de utilização: <b>100%</b></p>
+                            <p>Valor de avaliação do imóvel: <b>R$340.000,00</b></p>
+                            <p>Data da avaliação do imóvel: <b>17/02/2023</b></p>
+                            <p>Empresa avaliadora: <b>CONSULTING ENGENHARIA LTDA</b></p>
+                            <p>CNPJ da empresa: <b>02.480.066/0001-51</b></p>
+                            <br>
+                            <p>Descrição do imóvel: <b></b></p>
+                            <p>Dados para inclusão da P.N.:</p>
+                            <p>Nome: <b></b></p>
+                            <p>CPF/CNPJ: <b>108.002.687-84</b></p>
+                            <p>Produto: <b></b></p>
+                            <p>Valor do financiamento: <b></b> </p>
+                            <p>Prazo: <b></b></p>
+                            <p>Taxa: <b></b></p>
+                            <p>Sistema de financiamento: <b></b></p>
+                            <p>Indexador: <b>selecionar TR (303) - 100%</b></p>
+                            <p> GARANTIA: <b></b></p>
+                            <br>
+                            <p>Parecer da PN: Conforme análise gerencial, considerando o perfil, fonte e nível de renda,
+                                endividamento, restrições, relação dívida/garantia etc.</p>
+                            <br>
+                            <p>QUANDO DA INCLUSÃO DA PN, RESPONDER A ESTA MENSAGEM.</p>
+                            <p>Atenciosamente,</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+</body>
+
+</html>
+
+<script src="../js/proposta_negocio/functions.js"></script>

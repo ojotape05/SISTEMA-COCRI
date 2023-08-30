@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema COCRI</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" media="screen"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <div style="width: 100%;" class="d-flex flex-wrap justify-content-center py-3 border-bottom">
+                <div href="/" class="d-flex align-items-center  mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <span class="fs-4">Sistema COCRI</span>
+                </div>
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="abertura" class="nav-link">Abertura</a></li>
+                    <li class="nav-item"><a href="avaliacao" class="nav-link">Avaliação</a></li>
+                    <li class="nav-item"><a href="triagem" class="nav-link" >Triagem</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    {{{body}}}
+    
+</body>
+
+</html>
+<script>
+  var url_atual = window.location.href;
+  split_url = url_atual.split("/")
+  currentpage = split_url[(split_url.length - 1)]
+  
+  document.querySelectorAll(".nav-link").forEach( a => {
+    if(currentpage == ""){
+        a_home = document.querySelector('a[href="/"]')
+        a_home.classList.add("active")
+        a_home.setAttribute("aria-current","page")
+    }
+    else{
+        if(a.href.includes(currentpage)){
+            a.classList.add("active")
+            a.setAttribute("aria-current","page")
+        }
+        
+    }
+  })
+</script>

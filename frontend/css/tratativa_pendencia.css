@@ -1,0 +1,243 @@
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7vh;
+    background-color: white;
+}
+
+#bloco-etapas{
+    width: 80%;
+    min-width: 504px;
+}
+
+.columns ul{
+    display: flex;
+}
+
+input[type="checkbox"]{
+    margin-right: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.card {
+    margin-top: 1.5%;
+    margin-bottom: 2.5%;
+    display: flex;
+    justify-content: center;
+    padding-inline: 3%;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+}
+
+#divDocs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    font-size: 10px;
+}
+
+.border-left{
+    border-left: 1px solid;
+}
+
+#tratativaPendencia{
+    height: 100%;
+}
+
+#pendenciasDiv{
+    display: flex;
+    height: 22rem;
+    border: 1px solid black;
+    background-color: #f8f9fa;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+
+.columns{
+    display:flex;
+    flex-direction: column;
+    width:20%;
+    min-width: 132px;
+    height: 25rem;
+    margin-bottom: 25px;
+}
+
+.columns h4{
+    font-weight: bold;
+    text-align: center;
+}
+
+.columns .itens{
+    overflow-y: auto;
+}
+
+.observacaoPendencia{
+    resize: none;
+}
+
+#analiseDocumental {
+    margin-bottom: 50px;
+    min-width: 504px;
+}
+
+.divTitulosEtapas{
+    padding: 8px;
+    text-align: center;
+    /* padding-bottom */
+}
+
+[name=content]{
+    display: none;
+    height: 90%;
+    margin-top: 15px;
+    flex-direction: column;
+}
+
+#statusDps-div{
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.sanfonado{
+    padding: 7px
+}
+
+.divNovaPendencia{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 265px;
+    min-height: 65px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.novaPendencia{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 80%;
+    width: 92%;
+    
+}
+
+label,
+.form-control {
+    font-size: 1.1rem;
+}
+
+.py-3 {
+    padding-top: 0.4rem !important;
+    padding-bottom: 0.4rem !important;
+}
+
+.padding-bottom {
+    padding-bottom: 1.5%;
+}
+
+.padding-top {
+    padding-top: 1.5%;
+}
+
+.form-floating>.form-control-plaintext:focus,
+.form-floating>.form-control-plaintext:not(:placeholder-shown),
+.form-floating>.form-control:focus,
+.form-floating>.form-control:not(:placeholder-shown) {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.divButton{
+    display: flex;
+    justify-content: end;
+    height: 3rem;
+    top: 3%;
+    position: relative;
+    margin-block: 10px;
+}
+
+.submitButton{
+    position: relative;
+    height: 100%;
+    width: 10%;
+    min-width: 74px;
+    border-radius: 4px;
+    border: 0;
+    background-color: #0d6efd;
+    color: white;
+}
+
+.form-floating>.form-control {
+    padding: 1rem 0.75rem;
+    padding-top: 1rem;
+    padding-right: 0.75rem;
+    padding-bottom: 1rem;
+    padding-left: 0.75rem;
+}
+
+@media (max-width: 1197px){
+    ul{
+        font-size: 11px;
+    }
+    .columns h4{
+        font-size: 15px;
+    }
+}
+
+input:invalid {
+    border-color: red !important;
+  }
+  input:valid {
+    border-color: green !important;
+  }
+
+@media (max-width: 576px) {
+    header {
+        height: 11% !important;
+    }
+    .form-control{
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 870px) {
+    .card{
+        margin-top: 0%!important;
+    }
+    h6,label{
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 490px) {
+    h6,label {
+        font-size: 0.9rem;
+    }
+    header {
+        height: 14% !important;
+    }
+
+    ul[class='nav nav-pills'] {
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,160 @@
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/trash.css');
+
+html,
+body {
+    height: 100vh;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 7vh;
+    background-color: white;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+#section1{
+    margin-left: 2%;
+    width: 50%;
+}
+
+#section2{
+    display: flex;
+    width: 45%;
+    height: 100%;
+    padding-left: 3%;
+    flex-direction: column;
+}
+
+.card {
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    display: flex;
+    justify-content: center;
+    padding: 3%;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+}
+
+label,
+.form-control {
+    font-size: 1.1rem;
+}
+
+.py-3 {
+    padding-top: 0.4rem !important;
+    padding-bottom: 0.4rem !important;
+}
+
+.margin-bottom-form {
+    margin-bottom: 1.5%;
+}
+
+#aberturaProcesso {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    max-width: 1730px;
+}
+
+.padding-bottom {
+    padding-bottom: 1.5%;
+}
+
+.padding-top {
+    padding-top: 1.5%;
+}
+
+.form-floating>.form-control-plaintext:focus,
+.form-floating>.form-control-plaintext:not(:placeholder-shown),
+.form-floating>.form-control:focus,
+.form-floating>.form-control:not(:placeholder-shown) {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.form-floating>.form-control {
+    padding: 1rem 0.75rem;
+    padding-top: 1rem;
+    padding-right: 0.75rem;
+    padding-bottom: 1rem;
+    padding-left: 0.75rem;
+}
+
+.divinput-margin-left {
+    margin-left: 3%;
+}
+
+#tipodeamortizacao{
+    font-size: 12px;
+}
+
+@media (max-width: 767px){
+    ul{
+        font-size: 11px;
+    }
+}
+
+input:invalid {
+    border-color: red !important;
+  }
+  input:valid {
+    border-color: green !important;
+  }
+
+@media (max-width: 576px) {
+    header {
+        height: 11% !important;
+    }
+    .form-control{
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 870px) {
+    #aberturaProcesso {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 3%;
+        font-size: 12px;
+    }
+    #section1{
+        margin-left: 0%!important;
+        width: 80%;
+    }
+    #section2{
+        margin-top: 2.5%;
+        margin-left: 0%!important;
+        padding-left: 0%!important;
+        width: 80%;
+    }
+    .card{
+        margin-top: 0%!important;
+    }
+    h6,label{
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width: 490px) {
+    h6,label {
+        font-size: 0.9rem;
+    }
+    header {
+        height: 14% !important;
+    }
+
+    ul[class='nav nav-pills'] {
+        display: flex;
+        justify-content: center;
+    }
+}

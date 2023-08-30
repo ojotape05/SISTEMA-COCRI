@@ -1,0 +1,84 @@
+CREATE TABLE Processo 
+( 
+ id_processo INT PRIMARY KEY,  
+ sistema_financiamento CHAR(5) NOT NULL,  
+ taxa FLOAT NOT NULL,  
+ fgts INT,  
+ iq INT,  
+ portab INT,  
+ operacao CHAR(10) NOT NULL,  
+ status CHAR(20) NOT NULL,  
+ valor_financiamento FLOAT NOT NULL,  
+ dt_entrada_gecri DATE NOT NULL,  
+ prazo INT NOT NULL
+); 
+
+CREATE TABLE FGTS 
+( 
+ id_fgts INT PRIMARY KEY,  
+ dt_consulta DATE NOT NULL,  
+ dt_retorno DATE,  
+ problema INT 
+); 
+
+CREATE TABLE Portab 
+( 
+ id_portab INT PRIMARY KEY,  
+ dt_consulta DATE,  
+ dt_retorno DATE,  
+ problema INT  
+); 
+
+CREATE TABLE IQ 
+( 
+ id_iq INT PRIMARY KEY,  
+ dt_consulta DATE,  
+ dt_retorno DATE,  
+ problema INT  
+); 
+
+CREATE TABLE Contrato 
+( 
+ id_contrato INT PRIMARY KEY,  
+ num_contrato INT,  
+ dt_contrato DATE,  
+ dt_formalizacao DATE,  
+ idProcesso INT,  
+ UNIQUE (num_contrato)
+); 
+
+CREATE TABLE Mutuario 
+( 
+ num_mutuario INT PRIMARY KEY,  
+ nome VARCHAR(200) NOT NULL,  
+ tipo CHAR(2) NOT NULL,  
+ idCertidoes INT  
+); 
+
+CREATE TABLE Vendedor 
+( 
+ num_vendedor INT PRIMARY KEY,  
+ nome VARCHAR(200) NOT NULL,  
+ tipo CHAR(2) NOT NULL,  
+ idCertidoes INT  
+); 
+
+CREATE TABLE Usuario 
+( 
+ nome CHAR,  
+ senha INT,  
+ matricula INT PRIMARY KEY  
+);
+
+CREATE TABLE Pendencia 
+( 
+ tipo CHAR,  
+ categoria CHAR,  
+ descricao VARCHAR(255),  
+ id_pendencia INT PRIMARY KEY,  
+ dt_consulta_agencia DATE NOT NULL,  
+ dt_retorno_agencia DATE,  
+ resolvida INT 
+);
+
+ALTER TABLE Contrato ADD FOREIGN KEY(idProcesso) REFERENCES Processo (id_processo);

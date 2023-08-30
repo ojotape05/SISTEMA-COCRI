@@ -1,0 +1,163 @@
+<head>
+  <link rel="stylesheet" type="text/css" media="screen"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link href="../css/avaliacao_imovel.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <main class="bg-body-tertiary">
+    <div class="d-flex align-items-center" style="margin-top:4vh;flex-direction: column;width: 100%;height: 90%;">
+
+      <form id="avaliacaoImovel" type="submit">
+
+        <div id='formDiv' class="form-signin card padding-bottom">
+          <h3 style="display: flex;justify-content: center;padding-bottom: 20px;" class="mb-3 fw-normal padding-bottom">
+            Avaliação </h3>
+          <div>
+            <div class="margin-bottom-form" style="display: flex;justify-content: space-around;">
+
+              <div id='valores-div'>
+
+                <div style="width: 65%;">
+                  <div class="form-floating" style="display: flex;">
+                    <h6 class="fw-normal" style="width: 50%;">Valor Compra e Venda</h6>
+                    <input type="text" class="form-control valorReal" id="valorCompraVenda" readonly>
+                  </div>
+  
+                  <div class="form-floating" style="margin-top:5px;display: flex;">
+                    <h6 class="fw-normal" style="width: 50%;">Valor Financiamento</h6>
+                    <input type="text" class="form-control valorReal" id="valorFinanciamento" readonly>
+                  </div>
+
+                  <div class="form-floating" style="margin-top:5px;display: flex;">
+                    <h6 class="fw-normal" style="width: 50%;">Valor Avaliação</h6>
+                    <input type="text" class="form-control valorReal" id="valorAvaliacao">
+                  </div>
+                  
+                  <div style="margin-top:10px;display: flex;flex-direction: column;align-items:center;justify-content: center;border-top: solid 1px #cccccc;">
+                    <h6>Sistema de Amortização</h6>
+                    <div style="display: flex;">
+                      <div> <input type="radio" name="sistemaAmortizacao" id="sac" checked> SAC </div>
+                      <div style="margin-left:10px"> <input type="radio" name="sistemaAmortizacao" id="price"> PRICE </div>
+                    </div>
+                  </div>
+                </div>              
+
+              </div>
+
+              <div id="calc-div">
+                
+                <div style="display: flex;flex-direction: column;width: 35%;    justify-content: center;">
+                  <div style="display: flex;flex-direction:column;">
+                    Financimaneto máximo <input type="text" style='margin-left: 5px;' class="form-control valorReal" id="valorMax" readonly>
+                  </div>
+                  <div style="display: flex;flex-direction:column;margin-top: 8px;">
+                    Valor a Complementar <input type="text" style='margin-left: 5px;'class="form-control valorReal" id="valorComplemento" readonly>
+                  </div>
+
+                </div>
+                <div style="width: 35%;">
+                  <div style="width: 100%;height: 100%;">
+                    <div class="obss" id="enquadramento"> Observação </div>
+                  </div>
+                </div>
+              </div>
+
+              
+
+
+            </div>
+            <div id="divPendencia"><button type="button" class="btn btn-warning" onclick="pendencia()">Abrir pendência!</button></div>
+          </div>
+
+          <div>
+            <div class="margin-bottom-form" style="display: flex;justify-content: space-around;padding-top:20px">
+              <div id="apontamento-div">
+                
+                <div style="width:100%">
+            
+                  <div class="margin-bottom-form" style="display: flex;justify-content: space-around;">
+      
+                    <div style="display: flex;width: 98%;height:125px;border-radius: 10px;justify-content: space-evenly">
+                      
+                      <div style="width: 33%; padding: 10px;background-color: #eaeaea;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius: 10px;">
+                        <div style="display:flex;flex-direction:column;align-items:center;">
+                          <h4>Apontamento?</h4>
+                          <div>
+                            <input type="radio" name="apontamento" value="sim"> Sim
+                            <input type="radio" name="apontamento" value="nao"> Não
+                          </div>
+                          
+                        </div>
+                      </div>
+                      
+                      <div style="display:flex;flex-direction:column;align-items:center;justify-content: center;width: 33%; padding: 10px;background-color: #0d6efd82;border-radius: 10px;color: white;">
+                        <h4>Tipo de apontamento:</h4>
+                        <div>
+                          <select id="tipoApontamento" class="form-select">
+                            <option value="AreaNaoAverbada"> Area não averbada </option>
+                            <option value="blablabla"> bla bla bla </option>
+                          </select>
+                        </div>
+                      </div>
+      
+                      <div style="display:flex;flex-direction:column;align-items:center;justify-content: center;width: 33%; padding: 10px;background-color: #eaeaea;border-radius: 10px;">
+                        <div>
+                          <div style="width: 100%;height: 100%;">
+                            <textarea id="critica" style="background-color: white;resize: none;border-radius: 3px;" placeholder="Crítica:" cols="30" rows="5"></textarea>
+                          </div>
+                          
+                        </div>
+                      </div>
+      
+                      
+                    </div>
+        
+        
+                  </div>
+                  <div style="margin-top:15px" class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-primary" type="submit"> Enviar </button>
+                  </div>
+                </div>
+              </div>
+
+              
+              
+            </div>
+            <div id="divPendencia"><button type="button" class="btn btn-warning" onclick="pendencia()">Abrir pendência!</button></div>
+          </div>
+      </form>
+          <div id="tarifa-div">
+            <div style="width: 50%;">
+              <h4 style="text-align: center;"> Tarifa de Avaliação</h4>
+              <div style="display: flex;justify-content: space-around;">
+                <div style="width: 45%;">
+                  <h5> <b>Data de Solicitação</b> </h5> 
+                  <input style="height: 50px;font-size: 15px;" class="form-control" type="date" name="" id="dt_solicitacao">
+                </div>
+                <div style="width: 45%;">
+                  <h5> <b>Data de Recebimento</b> </h5> 
+                  <input style="height: 50px;font-size: 15px;" class="form-control" type="date" name="" id="dt_recebimento">
+                </div>
+              </div>
+              <div style="display: flex;justify-content: end;padding-top: 10px;"> <button class="btn btn-primary" type="button" onclick="datas_tarifa()"> Atualizar </button> </div>
+              
+    
+            </div>
+          </div>
+          
+        </div>
+
+        
+
+      
+
+    </div>
+  </main>
+
+</body>
+
+</html>
+<script src="../js/avaliacao_imovel/functions.js"></script>
+<script src="../js/avaliacao_imovel/post_infos.js"></script>
