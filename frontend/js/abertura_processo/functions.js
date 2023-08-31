@@ -28,7 +28,7 @@ function teste(option) {
 if (document.querySelector('#cid')) {
   elem = document.querySelector('#cid')
   elem.addEventListener("change", function (event) {
-      fetch('./js/data/agencias.json') // Faz a requisição do arquivo JSON
+      fetch('../backend/data/agencias.json') // Faz a requisição do arquivo JSON
         .then(response => response.json()) // Converte a resposta para JSON
         .then(agencias=> {
           agencias = agencias[0]

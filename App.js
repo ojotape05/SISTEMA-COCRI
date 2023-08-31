@@ -14,5 +14,5 @@ app.use(router)
 require("./backend/database/index")
 
 app.listen(process.env.PORT, () => {
-    console.log(`Servidor rodando na https://localhost:${process.env.PORT}`);
+    console.log(`Servidor rodando na http://localhost:${process.env.PORT}`);
 })

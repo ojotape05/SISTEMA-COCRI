@@ -1,84 +1,38 @@
-CREATE TABLE Processo 
+CREATE TABLE processo 
 ( 
  id_processo INT PRIMARY KEY,  
- sistema_financiamento CHAR(5) NOT NULL,  
- taxa FLOAT NOT NULL,  
+ dt_entrada_gecri DATE NOT NULL,  
+ vl_compra_venda FLOAT NOT NULL,  
+ vl_financiamento FLOAT NOT NULL,  
  fgts INT,  
  iq INT,  
  portab INT,  
- operacao CHAR(10) NOT NULL,  
- status CHAR(20) NOT NULL,  
- valor_financiamento FLOAT NOT NULL,  
- dt_entrada_gecri DATE NOT NULL,  
- prazo INT NOT NULL
+ sist_amortizacao CHAR(6) NOT NULL,  
+ prazo INT NOT NULL,  
+ taxa FLOAT NOT NULL,  
+ cid INT NOT NULL,  
+ nome_agencia INT NOT NULL,  
+ sureg CHAR(5) NOT NULL,  
+ cnpj_corresp CHAR(18),  
+ nome_corresp VARCHAR(200) 
 ); 
 
-CREATE TABLE FGTS 
+CREATE TABLE mutuario 
 ( 
- id_fgts INT PRIMARY KEY,  
- dt_consulta DATE NOT NULL,  
- dt_retorno DATE,  
- problema INT 
+ nome_mut VARCHAR(200) NOT NULL,  
+ num_mut VARCHAR(18) PRIMARY KEY NOT NULL,  
+ tipo_mut CHAR(2) NOT NULL,  
+ dt_nascimento_mut DATE NOT NULL,  
+ idprocesso INT 
 ); 
 
-CREATE TABLE Portab 
+CREATE TABLE vendedor 
 ( 
- id_portab INT PRIMARY KEY,  
- dt_consulta DATE,  
- dt_retorno DATE,  
- problema INT  
+ nome_vend VARCHAR(200) NOT NULL,  
+ num_vend VARCHAR(18) PRIMARY KEY,  
+ tipo_vend CHAR(2) NOT NULL,  
+ idprocesso INT 
 ); 
 
-CREATE TABLE IQ 
-( 
- id_iq INT PRIMARY KEY,  
- dt_consulta DATE,  
- dt_retorno DATE,  
- problema INT  
-); 
-
-CREATE TABLE Contrato 
-( 
- id_contrato INT PRIMARY KEY,  
- num_contrato INT,  
- dt_contrato DATE,  
- dt_formalizacao DATE,  
- idProcesso INT,  
- UNIQUE (num_contrato)
-); 
-
-CREATE TABLE Mutuario 
-( 
- num_mutuario INT PRIMARY KEY,  
- nome VARCHAR(200) NOT NULL,  
- tipo CHAR(2) NOT NULL,  
- idCertidoes INT  
-); 
-
-CREATE TABLE Vendedor 
-( 
- num_vendedor INT PRIMARY KEY,  
- nome VARCHAR(200) NOT NULL,  
- tipo CHAR(2) NOT NULL,  
- idCertidoes INT  
-); 
-
-CREATE TABLE Usuario 
-( 
- nome CHAR,  
- senha INT,  
- matricula INT PRIMARY KEY  
-);
-
-CREATE TABLE Pendencia 
-( 
- tipo CHAR,  
- categoria CHAR,  
- descricao VARCHAR(255),  
- id_pendencia INT PRIMARY KEY,  
- dt_consulta_agencia DATE NOT NULL,  
- dt_retorno_agencia DATE,  
- resolvida INT 
-);
-
-ALTER TABLE Contrato ADD FOREIGN KEY(idProcesso) REFERENCES Processo (id_processo);
+ALTER TABLE mutuario ADD FOREIGN KEY(idprocesso) REFERENCES processo (id_processo);
+ALTER TABLE vendedor ADD FOREIGN KEY(idprocesso) REFERENCES processo (id_processo);

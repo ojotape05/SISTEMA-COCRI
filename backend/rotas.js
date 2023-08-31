@@ -8,8 +8,12 @@ router.get("/", function (req, res) {
     res.status(200).render("index")
 })
 
-router.get("/abertura", function (req, res) {
+router.get("/abertura", function (req, res){
     res.status(200).render("abertura")
+})
+
+router.get("/get-agencias", function (req, res) {
+    res.json(require("./data/agencias.json"))
 })
 
 router.post("/send-abertura", function (req,res) {
