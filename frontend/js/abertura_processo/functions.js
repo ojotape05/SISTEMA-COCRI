@@ -119,6 +119,7 @@ function add(tipo){
     var num = parseInt(span.textContent)
     if(num + 1 <= 4){
       num+=1; divMuts = document.querySelector("[name='listaMutuario']"); divMut = divMuts.children[0]
+      console.log(divMut.cloneNode(true))
       divMuts.appendChild(divMut.cloneNode(true))
       span.textContent = num
     }
