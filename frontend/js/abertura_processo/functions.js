@@ -1,41 +1,21 @@
-function teste(option) {
-
-    if (option != null) {
-      alert("Modo de teste")
-      function dadosGerais() {
-        document.querySelector("#dataEntradaGecri").value = "2023-08-02"
-        document.querySelector("#valorFinanciamento").value = 227787, 17
-
-        document.querySelector("#mutuario").value = "SAILE TOMAZELLI"
-        document.querySelector("#num_Mutuario").value = "131.950.177-09"
-
-        document.querySelector("#cid").value = "236"
-      }
-
-      if (option == 0) {
-        dadosGerais()
-      }
-      else if (option == 1) { //Com correspondente
-        dadosGerais()
-        document.querySelector("#cnpjCorrespondente").value = "13.056.230/0001-14"
-      }
-    }
-
-
-  }
-
-  //teste(0) // 0 -> Sem correspondente / 1 -> Com correspondente / NULL or DIFF -> Sem teste
 if (document.querySelector('#cid')) {
-  elem = document.querySelector('#cid')
-  elem.addEventListener("change", function (event) {
-      fetch('../backend/data/agencias.json') // Faz a requisição do arquivo JSON
+  cid = document.querySelector('#cid')
+  cid.addEventListener("change", function (event) {
+      fetch('/agencias') // Faz a requisição do arquivo JSON
         .then(response => response.json()) // Converte a resposta para JSON
-        .then(agencias=> {
-          agencias = agencias[0]
-          cids = Object.values(agencias.cid)
-          indice = cids.indexOf(parseInt(event.target.value))
-          document.getElementById("agencia").value = agencias.nome_agencia[indice]
-          document.getElementById("superintendencia").value = agencias.nome_superintendencia[indice]
+        .then(response => {
+          const agencias = response.agencias
+          try{
+            var agencia = agencias.filter(el => el.cid === parseInt(cid.value))[0]
+            document.getElementById("agencia").value = agencia.nome_agencia
+            document.getElementById("superintendencia").value = agencia.nome_superintendencia
+          }
+          catch(e){
+            console.log("Erro ao filtrar agencia:",e)
+            document.getElementById("agencia").value = "Não encontrado"
+            document.getElementById("superintendencia").value = "Não encontrado"
+          }
+          
         }) // Chama a função para exibir os dados
         .catch(error => console.error('Erro ao carregar o JSON:', error));
     
@@ -61,16 +41,20 @@ if (document.querySelector('input[name="correspondente?"]')) {
 if (document.querySelector('#cnpjCorrespondente')) {
   elem = document.querySelector('#cnpjCorrespondente')
   elem.addEventListener("change", function (event) {
-      fetch('./js/data/correspondentes.json') // Faz a requisição do arquivo JSON
+      fetch('/correspondentes') // Faz a requisição do arquivo JSON
         .then(response => response.json()) // Converte a resposta para JSON
-        .then(correspondentes => {
-            var cnpj = event.target.value;
-            cnpj = parseInt(cnpj.replace(/[^a-zA-Z0-9]/g, ""))
-            for (corresp of correspondentes) {
-                if (corresp.correspondente == cnpj) {
-                document.getElementById("nomeCorrespondente").value = corresp.email
-                }
+        .then(response => {
+            const correspondentes = response.correspondentes
+            var cnpj = formatarCNPJ(event.target.value)
+            try{
+              var correspondente = correspondentes.filter(el => el.CNPJ === cnpj)[0]
+              document.querySelector("#nomeCorrespondente").value = correspondente.NomeFantasia
             }
+            catch(e){
+              console.log("Erro ao filtrar correspondente:",e)
+            }
+            
+
         }) // Chama a função para exibir os dados
         .catch(error => console.error('Erro ao carregar o JSON:', error));
     
@@ -171,4 +155,12 @@ function excl(tipo){
       span.textContent = num
     }
   }
+}
+
+function formatarCNPJ(cnpj) {
+  // Remove qualquer caractere não numérico do CNPJ
+  cnpj = cnpj.replace(/[^\d]/g, '');
+
+  // Formata o CNPJ no padrão com pontos, barras e traços
+  return cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
 }

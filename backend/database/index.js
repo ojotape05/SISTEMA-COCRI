@@ -9,8 +9,8 @@ async function start(){
     })
     console.log(res)*/
 
-    res = await db.selectAll('mutuario')
-    console.log("Retorno mutuarios:",res)
+    /*res = await db.selectAll('mutuario')
+    console.log("Retorno mutuarios:",res)*/
 }
 
 start()

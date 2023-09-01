@@ -5,10 +5,16 @@ connection to server at "localhost" (::1), port 5432 failed: Connection refused 
 
 resolution: pg_ctl -D ^"C^:^\Users^\030088259^\programas^\PostgreSQL^\data^" -l arquivolog start
 
+obs: para interromper = pg_ctl -D ^"C^:^\Users^\030088259^\programas^\PostgreSQL^\data^" -l arquivolog stop
+
 -------
 
 Dependencias:
-        arquivo .env:
+        - node_modules: npm i
+
+        - /backend/rotas/datas/
+        
+        - arquivo .env:
         CONNECTION_STRING=postgres://usuario:senha@host:port/database
         PORT=8080
 

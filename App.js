@@ -7,8 +7,9 @@ const config = require("./backend/app-config")
 config.write(app)
 
 //rotas
-const router = require("./backend/rotas")
-app.use(router)
+const rotas = require("./backend/rotas/index")
+rotas.get_json(app)
+rotas.get_pages(app)
 
 //iniciando database
 require("./backend/database/index")
