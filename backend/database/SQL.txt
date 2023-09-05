@@ -1,17 +1,16 @@
 CREATE TABLE processo 
 ( 
- id_processo INT PRIMARY KEY,  
+ id_processo SERIAL PRIMARY KEY,  
  dt_entrada_gecri DATE NOT NULL,  
  vl_compra_venda FLOAT NOT NULL,  
  vl_financiamento FLOAT NOT NULL,  
- fgts INT,  
- iq INT,  
- portab INT,  
+ fgts BOOLEAN,  
+ iq BOOLEAN, 
  sist_amortizacao CHAR(6) NOT NULL,  
  prazo INT NOT NULL,  
  taxa FLOAT NOT NULL,  
  cid INT NOT NULL,  
- nome_agencia INT NOT NULL,  
+ nome_agencia VARCHAR(50) NOT NULL,  
  sureg CHAR(5) NOT NULL,  
  cnpj_corresp CHAR(18),  
  nome_corresp VARCHAR(200) 
@@ -20,8 +19,7 @@ CREATE TABLE processo
 CREATE TABLE mutuario 
 ( 
  nome_mut VARCHAR(200) NOT NULL,  
- num_mut VARCHAR(18) PRIMARY KEY NOT NULL,  
- tipo_mut CHAR(2) NOT NULL,  
+ num_mut VARCHAR(18) PRIMARY KEY NOT NULL,
  dt_nascimento_mut DATE NOT NULL,  
  idprocesso INT 
 ); 
@@ -29,8 +27,7 @@ CREATE TABLE mutuario
 CREATE TABLE vendedor 
 ( 
  nome_vend VARCHAR(200) NOT NULL,  
- num_vend VARCHAR(18) PRIMARY KEY,  
- tipo_vend CHAR(2) NOT NULL,  
+ num_vend VARCHAR(18) PRIMARY KEY,
  idprocesso INT 
 ); 
 

@@ -45,4 +45,31 @@ async function insertMutuario(data) {
     
 }
 
-module.exports = {selectAll,insertMutuario}
+async function insertAbertura(data) {
+    try{
+        const client = await connect();
+        const sql = 'INSERT INTO processo(dt_entrada_gecri,vl_compra_venda,vl_financiamento,fgts,iq,sist_amortizacao,prazo,taxa,cid,nome_agencia,sureg,cnpj_corresp,nome_corresp) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13);';
+        const values = [
+            data.dt_entrada_gecri,
+            data.vl_compra_venda,
+            data.vl_financiamento,
+            data.fgts,
+            data.iq,
+            data.sist_amortizacao,
+            data.prazo,
+            data.taxa,
+            data.agencia.cid,
+            data.agencia.nome_agencia,
+            data.agencia.sureg,
+            data.corresp.cnpj_correspondente,
+            data.corresp.nome_correspondente
+        ];
+        return await client.query(sql, values);
+    }catch(e){
+        console.log(e)
+        return e;
+    }
+    
+}
+
+module.exports = {selectAll,insertAbertura,insertMutuario}

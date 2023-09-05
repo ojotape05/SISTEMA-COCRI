@@ -28,4 +28,10 @@ function get_pages(app){
     app.use('/triagem', triagemRouter)
 }
 
-module.exports = {get_json,get_pages}
+// Rotas de post
+function post_infos(app){
+    const aberturaPost = require("./post/abertura")
+    app.use('/abertura-post', aberturaPost)
+}
+
+module.exports = {get_json,get_pages,post_infos}

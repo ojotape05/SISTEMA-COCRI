@@ -70,21 +70,6 @@ if (document.querySelector('#cpfMutuario')) {
   });
 }
 
-if (document.querySelector('[type="checkbox"]')) {
-  document.querySelectorAll('[type="checkbox"]').forEach((elem) => {
-    elem.addEventListener("change", function (event) {
-      if (event.target.id == "portab" && event.target.checked == true) {
-        document.querySelector("#iq").checked = false
-        document.querySelector("#fgts").checked = false
-      } else if (event.target.id == "iq" && event.target.checked == true) {
-        document.querySelector("#portab").checked = false
-      } else if (event.target.id == "fgts" && event.target.checked == true){
-        document.querySelector("#portab").checked = false
-      }
-    })
-  })
-}
-
 elems = document.querySelectorAll('.real')
 .forEach(elem => {
   elem.addEventListener("change", function (event) {

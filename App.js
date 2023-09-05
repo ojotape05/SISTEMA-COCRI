@@ -10,9 +10,7 @@ config.write(app)
 const rotas = require("./backend/rotas/index")
 rotas.get_json(app)
 rotas.get_pages(app)
-
-//iniciando database
-require("./backend/database/index")
+rotas.post_infos(app)
 
 app.listen(process.env.PORT, () => {
     console.log(`Servidor rodando na http://localhost:${process.env.PORT}`);

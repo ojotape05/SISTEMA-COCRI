@@ -8,17 +8,23 @@ if (document.querySelector('#aberturaProcesso')) {
         if(el.checked) return el.value
       })
 
-      tiposMut = document.querySelectorAll("[name=tipoMutuario]")
-      .map( el => el.checked == true )
-
-      var numMutuario = parseInt(document.querySelector("#numMutuarios").textContent); var mutuarios = []
+      var numMutuario = parseInt(document.querySelector("#numMutuarios").textContent);
+      var mutuarios = []
       for(var i = 0; i < numMutuario; i++){
-        json = {
+        mutuarios.push({
           nome_mut: document.querySelectorAll("[name=mutuario]")[i].value,
           dt_nascimento_mut: document.querySelectorAll("[name=dt_nascimento_mut]")[i].value,
           num_mut: document.querySelectorAll("[name=num_Mutuario]")[i].value,
-        }
-        tipo = document.querySelectorAll("[name=num_Mutuario]")[i].value
+        })
+      }
+
+      var numVendedores = parseInt(document.querySelector("#numVendedores").textContent);
+      var vendedores = []
+      for(var i = 0; i < numVendedores; i++){
+        vendedores.push({
+          nome_vendedor: document.querySelectorAll('[name="vendedor"]')[i].value,
+          num_vend: document.querySelectorAll('[name="num_Vendedor"]')[i].value
+        })
       }
 
       json = {
@@ -26,8 +32,7 @@ if (document.querySelector('#aberturaProcesso')) {
         vl_compra_venda: parseFloat((document.querySelector("#valorCompraEVenda").value).replace(/[^0-9,]+/gm,"").replace(",",".")),
         vl_financiamento: parseFloat((document.querySelector("#valorFinanciamento").value).replace(/[^0-9,]+/gm,"").replace(",",".")),
         fgts: document.getElementById("fgts").checked,
-        iq: document.getElementById("fgts").checked,
-        portab: document.getElementById("portab").checked,
+        iq: document.getElementById("iq").checked,
         sist_amortizacao: document.getElementById("tipodeamortizacao").value,
         prazo: document.getElementById("prazo").value,
         taxa: parseFloat((document.getElementById("taxa").value).replace(/[^0-9,]+/gm,"").replace(",",".")),
@@ -41,8 +46,24 @@ if (document.querySelector('#aberturaProcesso')) {
           nome_correspodente: document.getElementById("nomeCorrespondente").value,
           cnpj_correspondente: document.getElementById("cnpjCorrespondente").value
         },
-        
+        operacao: document.querySelector("#tipodeoperacao").value,
+        mutuarios,
+        vendedores
       }
+
+      fetch('/abertura-post',{
+        method:'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(json)
+      })
+      .then( (res) => {
+        alert("Dados inseridos com sucesso!")
+      })
+      .catch( (res) => {console.log(res)})
+
     })
   }
   
