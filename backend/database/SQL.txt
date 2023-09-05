@@ -1,35 +1,56 @@
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
 CREATE TABLE processo 
 ( 
- id_processo SERIAL PRIMARY KEY,  
+ id_processo INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,  
  dt_entrada_gecri DATE NOT NULL,  
- vl_compra_venda FLOAT NOT NULL,  
- vl_financiamento FLOAT NOT NULL,  
- fgts BOOLEAN,  
- iq BOOLEAN, 
- sist_amortizacao CHAR(6) NOT NULL,  
+ operacao VARCHAR(6) NOT NULL,  
+ vl_compra_venda DOUBLE PRECISION NOT NULL,  
+ vl_financiamento DOUBLE PRECISION NOT NULL,  
+ fgts BOOLEAN NOT NULL,  
+ iq BOOLEAN NOT NULL,  
+ sist_amortizacao VARCHAR(6) NOT NULL,  
  prazo INT NOT NULL,  
- taxa FLOAT NOT NULL,  
+ taxa DOUBLE PRECISION NOT NULL,  
+ tipo_taxa VARCHAR(13) NOT NULL,  
  cid INT NOT NULL,  
  nome_agencia VARCHAR(50) NOT NULL,  
  sureg CHAR(5) NOT NULL,  
  cnpj_corresp CHAR(18),  
- nome_corresp VARCHAR(200) 
+ nome_corresp VARCHAR(200) NOT NULL  
 ); 
 
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
 CREATE TABLE mutuario 
 ( 
+ cpf_cnpj INT PRIMARY KEY,  
  nome_mut VARCHAR(200) NOT NULL,  
- num_mut VARCHAR(18) PRIMARY KEY NOT NULL,
- dt_nascimento_mut DATE NOT NULL,  
- idprocesso INT 
+ dt_nasicmento_mut DATE NOT NULL  
 ); 
 
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
 CREATE TABLE vendedor 
 ( 
- nome_vend VARCHAR(200) NOT NULL,  
- num_vend VARCHAR(18) PRIMARY KEY,
- idprocesso INT 
+ cpf_cnpj INT PRIMARY KEY,  
+ nome_mut VARCHAR(200) NOT NULL  
 ); 
 
-ALTER TABLE mutuario ADD FOREIGN KEY(idprocesso) REFERENCES processo (id_processo);
-ALTER TABLE vendedor ADD FOREIGN KEY(idprocesso) REFERENCES processo (id_processo);
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE venda 
+( 
+ vend_cpf_cnpj INT,  
+ id_processo INT,  
+ UNIQUE (vend_cpf_cnpj,id_processo)
+); 
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE compra 
+( 
+ mut_cpf_cnpj INT,  
+ id_processo INT,  
+ UNIQUE (mut_cpf_cnpj,id_processo)
+); 
+
+ALTER TABLE venda ADD FOREIGN KEY(vend_cpf_cnpj) REFERENCES vendedor (cpf_cnpj);
+ALTER TABLE venda ADD FOREIGN KEY(id_processo) REFERENCES processo (id_processo);
+ALTER TABLE compra ADD FOREIGN KEY(mut_cpf_cnpj) REFERENCES mutuario (cpf_cnpj);
+ALTER TABLE compra ADD FOREIGN KEY(id_processo) REFERENCES processo (id_processo);
