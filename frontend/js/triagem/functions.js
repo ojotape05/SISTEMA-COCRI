@@ -36,15 +36,23 @@ function sanfonado(elements){
 statusDps_div = document.querySelector("#statusDps-div")
 document.querySelectorAll('[name="dps?"]')
 .forEach( dpsinput => {
+
+    if(dpsinput.checked && dpsinput.value == 'true'){
+        statusDps_div.style.display = "flex"
+    }
+    else if(dpsinput.checked && dpsinput.value == 'false'){
+        statusDps_div.style.display = "none"
+    }
+
     dpsinput.addEventListener("change", event => {
         if(event.isTrusted){
-            if(dpsinput.checked && dpsinput.value == '1'){
+            if(dpsinput.checked && dpsinput.value == 'true'){
                 statusDps_div.style.display = "flex"
-                titulosEtapas[0].parentElement.style.height = "25rem"
+                titulosEtapas[1].parentElement.style.height = "25rem"
             }
-            else if(dpsinput.checked && dpsinput.value == '0'){
+            else if(dpsinput.checked && dpsinput.value == 'false'){
                 statusDps_div.style.display = "none"
-                titulosEtapas[0].parentElement.style.height = "20rem"
+                titulosEtapas[1].parentElement.style.height = "20rem"
             }
         }
     })

@@ -51,7 +51,7 @@ if (document.querySelector('#cnpjCorrespondente')) {
               document.querySelector("#nomeCorrespondente").value = correspondente.NomeFantasia
             }
             catch(e){
-              console.log("Erro ao filtrar correspondente:",e)
+              document.querySelector("#nomeCorrespondente").value = null
             }
             
 

@@ -8,7 +8,9 @@
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" media="screen"
     href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="/css/abertura_processo.css" rel="stylesheet">
+  <link href="/css/home.css" rel="stylesheet">
+   <!-- Inclua o Handlebars.js via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 </head>
 
 <body>
@@ -16,215 +18,76 @@
   <main class="bg-body-tertiary">
     <div class="d-flex align-items-center" style="flex-direction: column;width: 100%;height: 90%;">
 
-      <form id="aberturaProcesso" type="submit">
-
-        <section id="section1">
-          <div class="form-signin card padding-bottom" style="height: 420px;justify-content: flex-start;">
-            <h4 class="mb-3 fw-normal padding-bottom">Geral</h4>
-            <div>
-              <div style="display: flex" class="margin-bottom-form">
-
-                <div class="form-floating" style="width: 30%;">
-                  <h6 class="fw-normal">Data de entrada </h6>
-                  <input type="date" class="form-control" id="dataEntradaGecri" placeholder="Data de entrada GECRI"
-                    required="">
-                </div>
-
-                <div class="form-floating divinput-margin-left" style="width: 60%">
-                  <h6 class=" fw-normal"> Valor Financiamento (R$) </h6>
-                  <input formcontrolname="sGPTypeDeliveryId" id="valorFinanciamento" type="text"
-                    placeholder="Valor Financiamento (R$)" class="form-control" required="required">
-
-                </div>
-
-
-
-                <div class="divinput-margin-left"
-                  style="width: 30%;display: flex;justify-content: space-around;align-items: center">
-                  <div>
-                    <div>
-                      <input type="checkbox" name="fgts" id="fgts">
-                      <label for="fgts"> FGTS </label>
-                    </div>
-
-                    <div>
-                      <input type="checkbox" name="iq" id="iq">
-                      <label for="iq"> IQ </label>
-                    </div>
-
-                    <div>
-                      <input type="checkbox" name="portab" id="portab">
-                      <label for="iq"> PORTAB </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              <div style="display: flex" class="margin-bottom-form">
-
-                <div class="form-floating" style="width: 20%;">
-                  <h6 class="fw-normal">Sistema de Amortização</h6>
-                  <select class="form-select" id="tipodeamortizacao" required="">
-                    <option value="sac">SAC</option>
-                    <option value="price">PRICE</option>
-                  </select>
-                </div>
-
-                <div class="form-floating divinput-margin-left" style="width: 20%">
-                  <h6 class=" fw-normal"> Prazo (em meses) </h6>
-                  <input formcontrolname="sGPTypeDeliveryId" id="prazo" type="text" placeholder="Prazo (em meses)"
-                    class="form-control" required="required">
-                </div>
-
-                <div class="form-floating divinput-margin-left" style="width: 20%">
-                  <h6 class=" fw-normal"> Taxa </h6>
-                  <input formcontrolname="sGPTypeDeliveryId" id="taxa" type="text" placeholder="Taxa"
-                    class="form-control" required="required">
-                </div>
-              </div>
-
-              <!-- AGÊNCIA -->
-              <div class="padding-top border-bottom">
-                <h5 class="mb-3 fw-normal padding-bottom">Agência</h5>
-                <div style="display: flex;" class="margin-bottom-form">
-                  <div class="form-floating" style="width: 20%;">
-                    <h6 class=" fw-normal">CID </h6>
-                    <input type="text" class="form-control" id="cid" placeholder="CID" maxlength="5" required="">
-                  </div>
-
-                  <div class="form-floating divinput-margin-left" style="width: 55%;">
-                    <h6 class=" fw-normal">Nome da Agência </h6>
-                    <input type="text" class="form-control" id="agencia" placeholder="Nome da Agência" readonly=""
-                      required="">
-                  </div>
-
-                  <div class="form-floating divinput-margin-left" style="width: 25%;">
-                    <h6 class=" fw-normal">SUREG </h6>
-                    <input type="text" class="form-control" id="superintendencia" placeholder="SUREG" maxlength="5"
-                      readonly="" required="">
-                  </div>
-                </div>
-              </div>
-
-
-              <!-- FIM DA AGÊNCIA -->
-
-
-            </div>
-          </div>
-          <div class="card">
-            <div class="border-bottom">
-
-              <!-- CORRESPONDENTE -->
-              <div style="display: flex;justify-content: center;">
-                <div class="form-floating margin-bottom-form">
-                  <h5 class="mb-3 fw-normal">Correspondente? </h5>
-                  <div style="display: flex;justify-content: space-evenly;;">
-                    <input class="form-check-input" type="radio" id="corresp_sim" name="correspondente?" value="1"
-                      required=""> Sim
-                    <input class="form-check-input" type="radio" id="corresp_nao" name="correspondente?" value="0"
-                      required=""> Não
-                  </div>
-                </div>
-              </div>
-              <div class="padding-top" style="width: 100%;display: flex;">
-
-                <div id="correspDiv" style="display: none;width: 100%;">
-
-                  <div style="display: flex;margin-bottom: 2%;">
-                    <div class="form-floating" style="width: 40%;">
-                      <h6 class=" fw-normal">CNPJ</h6>
-                      <input type="text" class="form-control" id="cnpjCorrespondente" placeholder="CNPJ Correspondente"
-                        maxlength="18">
-                    </div>
-
-                    <div class="form-floating divinput-margin-left" style="width: 65%;">
-                      <h6 class=" fw-normal">Nome do Correspondente</h6>
-                      <input type="text" class="form-control" id="nomeCorrespondente"
-                        placeholder="Nome do Correspondente" readonly="">
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <!-- FIM DO CORRESPONDENTE -->
-          </div>
-        </section>
-
-        <section id="section2">
-
-          <div class="card">
-            <h4>Mutuarios:</h4>
-            <!-- MUTUARIOS -->
-            <div name="listaMutuario">
-              <div style="display: flex;padding-bottom: 1.5%;" class="border-bottom">
-
-                <div class="form-floating" style="width: 65%;">
-                  <h6 class="fw-normal">Mutuario</h6>
-                  <input type="text" class="form-control" id="mutuario" placeholder="Nome do Mutuario" required="">
-                </div>
-  
-                <div class="form-floating divinput-margin-left" style="width: 35%;">
-                  <h6 class="fw-normal">CPF/CNPJ</h6>
-                  <input type="text" class="form-control" id="num_Mutuario" placeholder="CPF/CNPJ" maxlength="18"
-                    required="">
-                </div>
-  
-                <div class="divinput-margin-left"
-                  style="display:flex;align-items:center;width: 15%;justify-content: space-around;">
-                  <div> <input class="form-check-input" type="radio" name="tipoMutuario" value="PF" required=""> PF </div>
-                  <div> <input class="form-check-input" type="radio" name="tipoMutuario" value="PJ" required=""> PJ </div>
-                </div>
-  
-              </div>
-            </div>
-            
-            <h4>Vendedores:</h4>
-            <!-- FIM DO MUTUARIO -->
-            <div name="listaVendedores">
-              <div style="display: flex;padding-bottom: 1.5%;" class="border-bottom">
-
-                <div class="form-floating" style="width: 65%;">
-                  <h6 class=" fw-normal">Vendedor</h6>
-                  <input type="text" class="form-control" id="vendedor" placeholder="Nome do vendedor" required="">
-                </div>
-  
-                <div class="form-floating divinput-margin-left" style="width: 35%;">
-                  <h6 class=" fw-normal">CPF/CNPJ</h6>
-                  <input type="text" class="form-control" id="num_Vendedor" placeholder="CPF/CNPJ" maxlength="18"
-                    required="">
-                </div>
-  
-                <div class="divinput-margin-left"
-                  style="display:flex;align-items:center;width: 15%;justify-content: space-around;">
-                  <div> <input class="form-check-input" type="radio" name="tipoVendedor" value="PF" required=""> PF </div>
-                  <div> <input class="form-check-input" type="radio" name="tipoVendedor" value="PJ" required=""> PJ </div>
-                </div>
-  
-              </div>
-            </div>
-            
-          </div>
-
-
-
+      <div class="form-signin card container" style="justify-content:initial;height: 30rem;">
+        <div name='titulo' class="d-flex justify-content-between align-items-center border-bottom">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-filter-left"
+            viewBox="0 0 16 16">
+            <path
+              d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z">
+            </path>
+          </svg>
+          <h3 class="fw-normal text-center titulosEtapas" style="margin: 0!important">Processos abertos</h3>
           <div>
-            <div class="w-100" style="display: flex; justify-content: end;">
-              <button class="btn btn-primary py-2" style="margin-left: 1.2%" type="submit">Confirmação</button>
-            </div>
+            <button type="button" class="btn border">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-caret-down" viewBox="0 0 16 16">
+                <path
+                  d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z">
+                </path>
+              </svg>
+            </button>
           </div>
-        </section>
-      </form>
+        </div>
+
+        <div name="content" style="height: 100%; overflow: auto;">
+
+          {{#each processos}}
+            <div name="processo" class="d-flex flex-row justify-content-between align-items-center rounded text-white flex-direction mt-3" style="background-color:#0D6EFD;height: 35px;">
+              
+              <div class="ps-3">
+                
+                <p name="data-entrada">#{{id_processo}} - <span>{{formatDate dt_entrada_gecri}}</span></p>
+                <span></span>
+              </div>
+
+              <div class="d-flex justify-content-between text-center">
+                <p name="nome-mutuario" class="m-0">Mutuário: {{mutuario_ref}} </p>
+              </div>
+
+              <div class="d-flex align-items-center justify-content-between pe-3" style="gap:10px">
+
+                <p name="status" class="m-0 text-center"> Status: {{status}}</p>
+
+                <a href="triagem?id_processo={{id_processo}}" style="color: #0cff00">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                  </svg>
+                </a>
+
+                <a href="excluir?id_processo={{id_processo}}" style="color: red">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+                </a>                
+
+              </div>
+
+            </div>
+          {{/each}}
+          
+          
+        </div>
+
+
+
+      </div>
 
     </div>
   </main>
 
-  <script src="/js/data/agencias.json"></script>
-  <script src="/js/data/correspondentes.json"></script>
-  <script src="/js/abertura_processo/functions.js"></script>
-  <script src="/js/abertura_processo/post_infos.js"></script>
+  <script src="/js/home/functions.js"></script>
+  <!-- <script src="/js/home/post_infos.js"></script> -->
 </body>
 
 </html>

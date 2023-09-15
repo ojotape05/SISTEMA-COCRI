@@ -11,33 +11,37 @@ CREATE TABLE processo
  sist_amortizacao VARCHAR(6) NOT NULL,  
  prazo INT NOT NULL,  
  taxa DOUBLE PRECISION NOT NULL,  
- tipo_taxa VARCHAR(13) NOT NULL,  
+ tipo_taxa VARCHAR(14) NOT NULL,  
  cid INT NOT NULL,  
  nome_agencia VARCHAR(50) NOT NULL,  
  sureg CHAR(5) NOT NULL,  
  cnpj_corresp CHAR(18),  
- nome_corresp VARCHAR(200) NOT NULL  
+ nome_corresp VARCHAR(200),
+ status VARCHAR(30) DEFAULT 'Processo aberto' NOT NULL,
+ dps_condicao BOOLEAN,
+ dps_status VARCHAR(10),
+ montagem BOOLEAN
 ); 
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 CREATE TABLE mutuario 
 ( 
- cpf_cnpj INT PRIMARY KEY,  
+ cpf_cnpj VARCHAR(18) PRIMARY KEY,  
  nome_mut VARCHAR(200) NOT NULL,  
- dt_nasicmento_mut DATE NOT NULL  
+ dt_nascimento_mut DATE NOT NULL  
 ); 
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 CREATE TABLE vendedor 
 ( 
- cpf_cnpj INT PRIMARY KEY,  
- nome_mut VARCHAR(200) NOT NULL  
+ cpf_cnpj VARCHAR(18) PRIMARY KEY,  
+ nome_vend VARCHAR(200) NOT NULL  
 ); 
 
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 CREATE TABLE venda 
 ( 
- vend_cpf_cnpj INT,  
+ vend_cpf_cnpj VARCHAR(18),  
  id_processo INT,  
  UNIQUE (vend_cpf_cnpj,id_processo)
 ); 
@@ -45,7 +49,7 @@ CREATE TABLE venda
 -- SQLINES LICENSE FOR EVALUATION USE ONLY
 CREATE TABLE compra 
 ( 
- mut_cpf_cnpj INT,  
+ mut_cpf_cnpj VARCHAR(18),  
  id_processo INT,  
  UNIQUE (mut_cpf_cnpj,id_processo)
 ); 

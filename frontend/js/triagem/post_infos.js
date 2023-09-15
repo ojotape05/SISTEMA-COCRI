@@ -8,6 +8,53 @@ document.querySelector("#certidoesForm")
     checarCertidoes(event)    
 })
 
+document.querySelector("#formDps")
+.addEventListener("submit", event => {
+    changeDps(event)    
+})
+
+function changeDps(event){
+    event.preventDefault()
+    
+    
+    var dps_condicao;
+    document.querySelectorAll("[name='dps?']")
+    .forEach( el => {
+        if(el.checked){
+            dps_condicao = el.value
+        }
+    })
+
+    var dps_status;
+    document.querySelectorAll("[name='statusdps']")
+    .forEach( el => {
+        if(el.checked){
+            dps_status = el.value
+        }
+    })
+
+    json = {
+        insert: 'dps',
+        dps_condicao,
+        dps_status
+    }
+
+    console.log(json)
+
+    /*fetch('/dps-change', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(json)
+    })
+    .then((res) => res.json())
+    .then((res) => {
+        console.log()
+    })*/
+}
+
 function lancarPendencia(event){
 
     event.preventDefault()

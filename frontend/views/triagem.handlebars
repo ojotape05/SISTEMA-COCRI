@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" type="text/css" media="screen"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link href="../css/tratativa_pendencia.css" rel="stylesheet">
+    <link href="../css/triagem.css" rel="stylesheet">
 </head>
 
 <body class="bg-body-tertiary">
@@ -19,18 +19,95 @@
     <main>
         <div class="d-flex align-items-center" style="flex-direction: column;width: 100%">
 
+            <div id='detalhes_processo' class="form-signin card container">
+                <div class="divTitulosEtapas d-flex align-items-center border-bottom">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-filter-left" viewBox="0 0 16 16">
+                        <path
+                            d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z">
+                        </path>
+                    </svg>
+                    <h3 class="fw-normal text-center titulosEtapas m-0 ms-5">Resumo do contrato:</h3>
+                    
+                </div>
+
+                <div class="align-items-center">
+                    
+                    {{#if sucess}}
+                       <div class="process-details">
+                            
+                            <div class="left-column">
+                                <h4>Compra e venda:</h4>
+                                <!-- Conteúdo das 2 subdivs à esquerda -->
+                                <div class="subdiv">
+                                    <strong>Mutuários: </strong>
+                                    {{#each processo.mutuarios}}
+                                    <ul>
+                                        <li> Nome: {{nome_mut}} </li>
+                                        <li> CPF/CNPJ: {{cpf_cnpj}} </li>
+                                        <li> Dt. Nascimento: {{dt_nascimento_mut}} </li>
+                                    </ul>
+                                    {{/each}}
+                                </div>
+                                <div class="subdiv">
+                                    <strong>Vendedores: </strong>
+                                    {{#each processo.vendedores}}
+                                    <ul>
+                                        <li> Nome: {{nome_vend}} </li>
+                                        <li> CPF/CNPJ: {{cpf_cnpj}} </li>
+                                    </ul>
+                                    {{/each}}
+                                </div>
+                            </div>
+                            <div class="right-column">
+                                <h4>Detalhes do contrato:</h4>
+                                <!-- Conteúdo das 3 subdivs à direita -->
+                                <div class="subdiv">
+                                    <strong>Geral:</strong>
+                                    <ul>
+                                        <li> Dt. Entrada Gecri: {{processo.dt_entrada_gecri}}</li>
+                                        <li> Vl. Compra e Venda: {{processo.vl_compra_venda}}</li>
+                                        <li> Vl. Financiamento: {{processo.vl_financiamento}}</li>
+                                        <li> FGTS: {{processo.fgts}} | IQ: {{processo.iq}}</li>
+                                        <li> {{processo.sist_amortizacao}} | {{processo.prazo}} meses | {{processo.taxa}} ({{processo.tipo_taxa}}) </li>
+                                    </ul>
+                                </div>
+                                <div class="subdiv">
+                                    <strong>Agência:</strong>
+                                    <ul>
+                                        <li>CID: {{processo.cid}}</li>
+                                        <li>Nome: {{processo.nome_agencia}}</li>
+                                        <li>SUREG: {{processo.sureg}}</li>
+                                    </ul>
+                                </div>
+                                <div class="subdiv">
+                                    <strong>Correspondente:</strong>
+                                    <ul>
+                                        <li>Nome: {{processo.nome_corresp}}</li>
+                                        <li>CNPJ: {{processo.cnpj_corresp}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+
+
+            </div>
             <div id="bloco-etapas">
 
                 <div id='dps' class="form-signin card">
                     <div class="divTitulosEtapas d-flex justify-content-between align-items-center border-bottom">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-filter-left" viewBox="0 0 16 16">
-                            <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
-                          </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-filter-left" viewBox="0 0 16 16">
+                            <path
+                                d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
+                        </svg>
                         <h3 class="fw-normal text-center titulosEtapas" style="margin: 0!important">DPS</h3>
                         <div>
                             <button type="button" class="btn border">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down"
-                                    viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-caret-down" viewBox="0 0 16 16">
                                     <path
                                         d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z">
                                     </path>
@@ -38,45 +115,61 @@
                             </button>
                         </div>
                     </div>
-                    
+
                     <div name="content" class="align-items-center">
-                        <div class="card" style="width: 30%;gap:10px;padding-block: 1%;margin:0!important">
-                            <div style="display: flex;" class="border-bottom">
-                                <div style="display: flex;width: 100%;justify-content: space-evenly">
-                                    <h4> DPS Positiva? </h4>
-                                    <div style="display: flex;justify-content: space-evenly;align-items: center;gap: 10px;">
-                                        <div> <input class="form-check-input" type="radio" name="dps?" value="1" required=""> Sim </div>
-                                        <div> <input class="form-check-input" type="radio" name="dps?" value="0" required=""> Não </div>
+                        <form id="formDps">
+                            <div style="display:flex;justify-content:center">
+                                <div class="card" style="width: 30%;gap:10px;padding-block: 1%;margin:0!important">
+                                    <div style="display: flex;" class="border-bottom">
+                                        <div style="display: flex;width: 100%;justify-content: space-evenly">
+                                            <h4> DPS Positiva? </h4>
+                                            <div style="display: flex;justify-content: space-evenly;align-items: center;gap: 10px;">
+                                                <div> <input class="form-check-input" type="radio" name="dps?" value="true" required {{checkCondicaoDps
+                                                        processo.dps_condicao "sim" }}> Sim </div>
+                                                <div> <input class="form-check-input" type="radio" name="dps?" value="false" required {{checkCondicaoDps
+                                                        processo.dps_condicao "nao" }}> Não </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div id="statusDps-div">
+                                            <h4 class="text-center"> Aceita pela seguradora? </h4>
+                                            <div style="display: flex;justify-content: space-evenly;align-items: center;">
+                                                <div> <input class="form-check-input" type="radio" name="statusdps" value="sim" required
+                                                        {{checkStatusDps processo.dps_status "sim" }}> Sim </div>
+                                                <div> <input class="form-check-input" type="radio" name="statusdps" value="nao" required
+                                                        {{checkStatusDps processo.dps_status "nao" }}> Não </div>
+                                                <div> <input class="form-check-input" type="radio" name="statusdps" value="analise" required
+                                                        {{checkStatusDps processo.dps_status "analise" }}> Em análise </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <div id="statusDps-div">
-                                    <h4 class="text-center"> Aceita pela seguradora? </h4>
-                                    <div style="display: flex;justify-content: space-evenly;align-items: center;">
-                                        <div> <input class="form-check-input" type="radio" name="statusdps" value="1" required=""> Sim </div>
-                                        <div> <input class="form-check-input" type="radio" name="statusdps" value="0" required=""> Não </div>
-                                        <div> <input class="form-check-input" type="radio" name="statusdps" value="2" required=""> Em análise </div>
-                                    </div>
-                                </div>
-                            </div>                          
-                        </div>
+                            
+                            <div class="divButton"> <button class="submitButton" type="submit"> Confirmar </button>
+                            </div>
+                        </form>
                         
+
                     </div>
-                    
-                    
+
+
                 </div>
 
                 <div id='montagem' class="form-signin card">
                     <div class="divTitulosEtapas d-flex justify-content-between align-items-center border-bottom">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-filter-left" viewBox="0 0 16 16">
-                            <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
-                          </svg>
-                        <h3 class="fw-normal text-center titulosEtapas" style="margin: 0!important">Montagem da pasta</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-filter-left" viewBox="0 0 16 16">
+                            <path
+                                d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
+                        </svg>
+                        <h3 class="fw-normal text-center titulosEtapas" style="margin: 0!important">Montagem da pasta
+                        </h3>
                         <div>
                             <button type="button" class="btn border">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down"
-                                    viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-caret-down" viewBox="0 0 16 16">
                                     <path
                                         d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z">
                                     </path>
@@ -84,36 +177,41 @@
                             </button>
                         </div>
                     </div>
-                    
+
                     <div name="content" class="align-items-center">
-                        
+
                         <div class="card" style="width: 30%;gap:10px;padding-block: 1%;margin:0!important">
                             <div style="display: flex;" class="border-bottom">
                                 <div style="display: flex;width: 100%;justify-content: space-evenly">
                                     <h4> A montagem foi feita? </h4>
-                                    <div style="display: flex;justify-content: space-evenly;align-items: center;gap: 10px;">
-                                        <div> <input class="form-check-input" type="radio" name="montagem?" value="1" required=""> Sim </div>
-                                        <div> <input class="form-check-input" type="radio" name="montagem?" value="0" required="" checked> Não </div>
+                                    <div
+                                        style="display: flex;justify-content: space-evenly;align-items: center;gap: 10px;">
+                                        <div> <input class="form-check-input" type="radio" name="montagem?" value="1"
+                                                required=""> Sim </div>
+                                        <div> <input class="form-check-input" type="radio" name="montagem?" value="0"
+                                                required="" checked> Não </div>
                                     </div>
                                 </div>
-                            </div>                        
+                            </div>
                         </div>
 
                     </div>
-                    
-                    
+
+
                 </div>
 
-                <div id='certidoes' class="form-signin card" >
+                <div id='certidoes' class="form-signin card">
                     <div class="divTitulosEtapas d-flex justify-content-between align-items-center border-bottom">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-filter-left" viewBox="0 0 16 16">
-                            <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
-                          </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-filter-left" viewBox="0 0 16 16">
+                            <path
+                                d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
+                        </svg>
                         <h3 class="fw-normal text-center titulosEtapas" style="margin: 0!important">Certidões</h3>
                         <div>
                             <button type="button" class="btn border">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down"
-                                    viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-caret-down" viewBox="0 0 16 16">
                                     <path
                                         d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z">
                                     </path>
@@ -121,164 +219,208 @@
                             </button>
                         </div>
                     </div>
-                    
+
                     <div name="content" class="overflow-auto">
                         <form id="certidoesForm">
                             <div class="d-flex justify-content-center" style="gap: 1%">
-                                
-                                <div class="d-flex flex-column align-items-center justify-content-center" style="width: 80%;padding: 6px;">
-                                    <!-- MUTUARIOS --> 
+
+                                <div class="d-flex flex-column align-items-center justify-content-center"
+                                    style="width: 80%;padding: 6px;">
+                                    <!-- MUTUARIOS -->
                                     <div class="d-flex flex-row" style="width: 100%;">
-                                        
+
                                         <div style="width: 100%;" name="listaMutuarios">
                                             <h3>Mutuario(s)</h3>
-                                            <div style="display: flex;flex-direction:column;padding-bottom: 1.5%;width: 100%;" class="border-bottom">
-                                                
+                                            <div style="display: flex;flex-direction:column;padding-bottom: 1.5%;width: 100%;"
+                                                class="border-bottom">
+
                                                 <!-- Mutuario 1 -->
                                                 <div style="display: flex; width: 100%; gap: 10px;">
                                                     <!-- INFOS MUTUARIO -->
-                                                    <div class="d-flex border-end" style="width: 50%;gap:10px;padding-right: 3px;">
+                                                    <div class="d-flex border-end"
+                                                        style="width: 50%;gap:10px;padding-right: 3px;">
                                                         <div class="form-floating" style="width: 65%;">
                                                             <h6 class="fw-normal">Mutuario</h6>
-                                                            <input type="text" class="form-control" id="mutuario" placeholder="Nome do Mutuario" value="Michael Jackson da Silva" readonly>
+                                                            <input type="text" class="form-control" id="mutuario"
+                                                                placeholder="Nome do Mutuario"
+                                                                value="Michael Jackson da Silva" readonly>
                                                         </div>
-                                                    
-                                                        <div class="form-floating divinput-margin-left" style="width: 35%;">
+
+                                                        <div class="form-floating divinput-margin-left"
+                                                            style="width: 35%;">
                                                             <h6 class="fw-normal">CPF</h6>
-                                                            <input type="text" class="form-control" id="num_Mutuario" placeholder="CPF/CNPJ" maxlength="18" value="123.456.789-10" readonly>
+                                                            <input type="text" class="form-control" id="num_Mutuario"
+                                                                placeholder="CPF/CNPJ" maxlength="18"
+                                                                value="123.456.789-10" readonly>
                                                         </div>
-                                                    
-                                                        <div class="divinput-margin-left" style="display:flex;align-items:center;width: 15%;justify-content: space-around;">
-                                                            <div> <input class="form-check-input" type="radio" name="tipoMutuario1" value="PF" readonly checked> PF </div>
+
+                                                        <div class="divinput-margin-left"
+                                                            style="display:flex;align-items:center;width: 15%;justify-content: space-around;">
+                                                            <div> <input class="form-check-input" type="radio"
+                                                                    name="tipoMutuario1" value="PF" readonly checked> PF
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!-- FIM INFOS MUTUARIO -->
 
                                                     <!-- CERTIDOES MUTUARIO -->
-                                                    <div class="d-flex align-items-center" style="width: 50%;gap:10px;padding-left: 3px;">
+                                                    <div class="d-flex align-items-center"
+                                                        style="width: 50%;gap:10px;padding-left: 3px;">
                                                         <div class="d-flex align-items-center" style="gap: 8px">
-                                                            <label style="margin:0" for="certidaoTrabalhista1">Certidão Trabalhista</label>
+                                                            <label style="margin:0" for="certidaoTrabalhista1">Certidão
+                                                                Trabalhista</label>
                                                             <input type="checkbox" name="" id="certidaoTrabalhista1">
                                                         </div>
                                                     </div>
                                                     <!-- FIM CERTIDOES MUTUARIO -->
                                                 </div>
-                                                
+
                                                 <!-- Mutuario 2 -->
                                                 <div style="display: flex; width: 100%; gap: 10px;">
                                                     <!-- INFOS MUTUARIO -->
-                                                    <div class="d-flex border-end" style="width: 50%;gap:10px;padding-right: 3px;">
+                                                    <div class="d-flex border-end"
+                                                        style="width: 50%;gap:10px;padding-right: 3px;">
                                                         <div class="form-floating" style="width: 65%;">
                                                             <h6 class="fw-normal">Mutuario</h6>
-                                                            <input type="text" class="form-control" id="mutuario" placeholder="Nome do Mutuario" value="Selena Gomes do Santos" readonly>
+                                                            <input type="text" class="form-control" id="mutuario"
+                                                                placeholder="Nome do Mutuario"
+                                                                value="Selena Gomes do Santos" readonly>
                                                         </div>
-                                                    
-                                                        <div class="form-floating divinput-margin-left" style="width: 35%;">
+
+                                                        <div class="form-floating divinput-margin-left"
+                                                            style="width: 35%;">
                                                             <h6 class="fw-normal">CPF</h6>
-                                                            <input type="text" class="form-control" id="num_Mutuario" placeholder="CPF/CNPJ" maxlength="18" value="987.654.321-00" readonly>
+                                                            <input type="text" class="form-control" id="num_Mutuario"
+                                                                placeholder="CPF/CNPJ" maxlength="18"
+                                                                value="987.654.321-00" readonly>
                                                         </div>
-                                                    
-                                                        <div class="divinput-margin-left" style="display:flex;align-items:center;width: 15%;justify-content: space-around;">
-                                                            <div> <input class="form-check-input" type="radio" name="tipoMutuario2" value="PF" readonly checked> PF </div>
+
+                                                        <div class="divinput-margin-left"
+                                                            style="display:flex;align-items:center;width: 15%;justify-content: space-around;">
+                                                            <div> <input class="form-check-input" type="radio"
+                                                                    name="tipoMutuario2" value="PF" readonly checked> PF
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!-- FIM INFOS MUTUARIO -->
 
                                                     <!-- CERTIDOES MUTUARIO -->
-                                                    <div class="d-flex align-items-center" style="width: 50%;gap:10px;padding-left: 3px;">
+                                                    <div class="d-flex align-items-center"
+                                                        style="width: 50%;gap:10px;padding-left: 3px;">
                                                         <div class="d-flex align-items-center" style="gap: 8px">
-                                                            <label style="margin:0" for="certidaoTrabalhista2">Certidão Trabalhista</label>
+                                                            <label style="margin:0" for="certidaoTrabalhista2">Certidão
+                                                                Trabalhista</label>
                                                             <input type="checkbox" name="" id="certidaoTrabalhista2">
                                                         </div>
                                                     </div>
                                                     <!-- FIM CERTIDOES MUTUARIO -->
                                                 </div>
-                                            
+
                                             </div>
-                                        </div>   
-                                        
+                                        </div>
+
                                     </div>
 
-                                    <!-- VENDEDORES --> 
+                                    <!-- VENDEDORES -->
                                     <div class="d-flex flex-row" style="width: 100%;">
-                                        
+
                                         <div style="width: 100%;" name="listaMutuarios">
                                             <h3>Vendedor(es)</h3>
-                                            <div style="display: flex;flex-direction:column;padding-bottom: 1.5%;width: 100%;" class="border-bottom">
-                                                
+                                            <div style="display: flex;flex-direction:column;padding-bottom: 1.5%;width: 100%;"
+                                                class="border-bottom">
+
                                                 <!-- Vendedor 1 -->
                                                 <div style="display: flex; width: 100%; gap: 10px;">
                                                     <!-- INFOS VENDEDOR -->
-                                                    <div class="d-flex border-end" style="width: 50%;gap:10px;padding-right: 3px;">
+                                                    <div class="d-flex border-end"
+                                                        style="width: 50%;gap:10px;padding-right: 3px;">
                                                         <div class="form-floating" style="width: 65%;">
                                                             <h6 class="fw-normal">Vendedor</h6>
-                                                            <input type="text" class="form-control" id="nome_vendedor1" placeholder="Nome do Mutuario" value="Imoveis LTDA" readonly>
+                                                            <input type="text" class="form-control" id="nome_vendedor1"
+                                                                placeholder="Nome do Mutuario" value="Imoveis LTDA"
+                                                                readonly>
                                                         </div>
-                                                    
-                                                        <div class="form-floating divinput-margin-left" style="width: 35%;">
+
+                                                        <div class="form-floating divinput-margin-left"
+                                                            style="width: 35%;">
                                                             <h6 class="fw-normal">CNPJ</h6>
-                                                            <input type="text" class="form-control" id="num_Vendedor1" placeholder="CPF/CNPJ" maxlength="18" value="00.123.456/7890-12" readonly>
+                                                            <input type="text" class="form-control" id="num_Vendedor1"
+                                                                placeholder="CPF/CNPJ" maxlength="18"
+                                                                value="00.123.456/7890-12" readonly>
                                                         </div>
-                                                    
-                                                        <div class="divinput-margin-left" style="display:flex;align-items:center;width: 15%;justify-content: space-around;">
-                                                            <div> <input class="form-check-input" type="radio" name="tipoVendedor1" value="PJ" readonly checked> PJ </div>
+
+                                                        <div class="divinput-margin-left"
+                                                            style="display:flex;align-items:center;width: 15%;justify-content: space-around;">
+                                                            <div> <input class="form-check-input" type="radio"
+                                                                    name="tipoVendedor1" value="PJ" readonly checked> PJ
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!-- FIM INFOS VENDEDOR -->
 
                                                     <!-- CERTIDOES VENDEDOR -->
-                                                    <div class="d-flex align-items-center overflow-auto" style="width: 50%;gap:10px;padding-left: 3px;">
+                                                    <div class="d-flex align-items-center overflow-auto"
+                                                        style="width: 50%;gap:10px;padding-left: 3px;">
                                                         <div class="d-flex align-items-center" style="gap: 8px">
-                                                            <label style="margin:0" for="certidaoTrabalhista1">Hist. Junta Comercial</label>
+                                                            <label style="margin:0" for="certidaoTrabalhista1">Hist.
+                                                                Junta Comercial</label>
                                                             <input type="checkbox" name="" id="certidaoTrabalhista1">
                                                         </div>
                                                         <div class="d-flex align-items-center" style="gap: 8px">
-                                                            <label style="margin:0" for="certidaoTrabalhista1">Cadastro CNPJ</label>
+                                                            <label style="margin:0" for="certidaoTrabalhista1">Cadastro
+                                                                CNPJ</label>
                                                             <input type="checkbox" name="" id="certidaoTrabalhista1">
                                                         </div>
                                                         <div class="d-flex align-items-center" style="gap: 8px">
-                                                            <label style="margin:0" for="certidaoTrabalhista1">Certidão FGTS</label>
+                                                            <label style="margin:0" for="certidaoTrabalhista1">Certidão
+                                                                FGTS</label>
                                                             <input type="checkbox" name="" id="certidaoTrabalhista1">
                                                         </div>
                                                         <div class="d-flex align-items-center" style="gap: 8px">
-                                                            <label style="margin:0" for="certidaoTrabalhista1">Certidão CND</label>
+                                                            <label style="margin:0" for="certidaoTrabalhista1">Certidão
+                                                                CND</label>
                                                             <input type="checkbox" name="" id="certidaoTrabalhista1">
                                                         </div>
                                                         <div class="d-flex align-items-center" style="gap: 8px">
-                                                            <label style="margin:0" for="certidaoTrabalhista1">Certidão Trabalhista</label>
+                                                            <label style="margin:0" for="certidaoTrabalhista1">Certidão
+                                                                Trabalhista</label>
                                                             <input type="checkbox" name="" id="certidaoTrabalhista1">
                                                         </div>
                                                     </div>
                                                     <!-- FIM CERTIDOES VENDEDOR -->
                                                 </div>
-                                            
+
                                             </div>
-                                        </div>   
-                                        
+                                        </div>
+
                                     </div>
-                                    
+
                                 </div>
-                                
-                            
+
+
                             </div>
-                            
-                            <div class="divButton"> <button class='submitButton' type="submit"> Confirmar </button> </div>
+
+                            <div class="divButton"> <button class='submitButton' type="submit"> Confirmar </button>
+                            </div>
                         </form>
                     </div>
-                    
-                    
+
+
                 </div>
 
                 <div id='analiseDocumental' class="form-signin card">
                     <div class="divTitulosEtapas d-flex justify-content-between align-items-center border-bottom">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-filter-left" viewBox="0 0 16 16">
-                            <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
-                          </svg>
-                        <h3 class="fw-normal text-center titulosEtapas" style="margin: 0!important">Analise documental</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-filter-left" viewBox="0 0 16 16">
+                            <path
+                                d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
+                        </svg>
+                        <h3 class="fw-normal text-center titulosEtapas" style="margin: 0!important">Analise documental
+                        </h3>
                         <div>
                             <button type="button" class="btn border">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down"
-                                    viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-caret-down" viewBox="0 0 16 16">
                                     <path
                                         d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z">
                                     </path>
@@ -286,31 +428,33 @@
                             </button>
                         </div>
                     </div>
-                    
+
                     <div name="content">
                         <form id='tratativaPendencia'>
-                            <h4 style="margin-top: 0;margin-bottom: 10px;"> Selecione <b>somente</b> as <b>PENDÊNCIAS</b>: </h4>
+                            <h4 style="margin-top: 0;margin-bottom: 10px;"> Selecione <b>somente</b> as
+                                <b>PENDÊNCIAS</b>: </h4>
                             <div id="divDocs">
 
                                 <div class="columns">
                                     <h4> Comprador </h4>
                                     <div class="itens">
-                                        
+
                                         <ul> <input type="checkbox" name="" id=""> <span> Quadro Resumo </span> </ul>
                                         <ul> <input type="checkbox" name="" id=""> <span> DPS </span> </ul>
                                         <ul> <input type="checkbox" name="" id=""> <span> Identificação </span> </ul>
                                         <ul> <input type="checkbox" name="" id=""> <span> Estado Civil </span> </ul>
-                                        <ul> <input type="checkbox" name="" id=""> <span> Comprovante de Residência </span> </ul>
+                                        <ul> <input type="checkbox" name="" id=""> <span> Comprovante de Residência
+                                            </span> </ul>
                                         <ul> <input type="checkbox" name="" id=""> <span> Produração </span> </ul>
                                         <ul> <input type="checkbox" name="" id=""> <span> Certidões </span> </ul>
                                         <ul> <input type="checkbox" name="" id=""> <span> Anexo X </span> </ul>
                                     </div>
                                 </div>
-                                
+
                                 <div class="columns border-left">
                                     <h4> FGTS </h4>
                                     <div class="itens">
-                                        
+
                                         <ul> <input type="checkbox" name="" id=""> <span> Pendencia 1 </span> </ul>
                                         <ul> <input type="checkbox" name="" id=""> <span> Pendencia 2 </span> </ul>
                                     </div>
@@ -319,42 +463,48 @@
                                 <div class="columns border-left">
                                     <h4> Vendedor </h4>
                                     <div class="itens">
-                                        
+
                                         <ul> <input type="checkbox" name="" id=""> <span> Identificação </span> </ul>
                                         <ul> <input type="checkbox" name="" id=""> <span> Estado Civil </span> </ul>
-                                        <ul> <input type="checkbox" name="" id=""> <span> Comprovante de Residência </span> </ul>
+                                        <ul> <input type="checkbox" name="" id=""> <span> Comprovante de Residência
+                                            </span> </ul>
                                         <ul> <input type="checkbox" name="" id=""> <span> Produração </span> </ul>
                                         <ul> <input type="checkbox" name="" id=""> <span> Certidões </span> </ul>
                                     </div>
                                 </div>
-                            
+
                                 <div class="columns border-left">
                                     <h4> Imovel </h4>
                                     <div class="itens">
                                         <ul> <input type="checkbox" name="" id=""> <span> Onus </span> </ul>
-                                        <ul> <input type="checkbox" name="" id=""> <span> Espelho de Cadastro </span> </ul>
+                                        <ul> <input type="checkbox" name="" id=""> <span> Espelho de Cadastro </span>
+                                        </ul>
                                         <ul> <input type="checkbox" name="" id=""> <span> CAT </span> </ul>
-                                        <ul> <input type="checkbox" name="" id=""> <span> Solicitação de Laudo </span> </ul>
+                                        <ul> <input type="checkbox" name="" id=""> <span> Solicitação de Laudo </span>
+                                        </ul>
                                     </div>
                                 </div>
-                                
+
 
                             </div>
                             <div class='d-flex' style="margin: 0px 0px 10px 0px;justify-content: space-evenly;">
-                                <button class="btn btn-primary py-2" type="button" onclick="checarDocs()"> Cadastrar pendências </button>
-                                <button class="btn btn-primary py-2" type="button" onclick="excluirPendencias()"> Apagar todas as pendências </button>
+                                <button class="btn btn-primary py-2" type="button" onclick="checarDocs()"> Cadastrar
+                                    pendências </button>
+                                <button class="btn btn-primary py-2" type="button" onclick="excluirPendencias()"> Apagar
+                                    todas as pendências </button>
                             </div>
                             <h5 style="font-weight: bold;margin-bottom: 0;"> Docs pendentes: </h5>
-                            <div id="pendenciasDiv" class="margin-bottom-form">                        
-                                
+                            <div id="pendenciasDiv" class="margin-bottom-form">
+
                             </div>
-                            <div class="divButton"> <button class='submitButton' type="submit"> Confirmar </button> </div>
+                            <div class="divButton"> <button class='submitButton' type="submit"> Confirmar </button>
+                            </div>
                         </form>
                     </div>
-                    
-                    
+
+
                 </div>
-               
+
             </div>
 
         </div>
@@ -362,5 +512,5 @@
 </body>
 
 </html>
-<script src="../js/tratativa_pendencia/functions.js"></script>
-<script src="../js/tratativa_pendencia/post_infos.js"></script>
+<script src="../js/triagem/functions.js"></script>
+<script src="../js/triagem/post_infos.js"></script>

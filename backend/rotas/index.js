@@ -11,6 +11,9 @@ function get_json(app){
 
     const correspondentesJSON = require("./datas/correspondentes")
     app.use('/correspondentes', correspondentesJSON)
+
+    const homeJSON = require("./datas-test/home")
+    app.use('/homeJSON',homeJSON)
 }
 
 // Rotas de página

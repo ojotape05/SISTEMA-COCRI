@@ -2,14 +2,6 @@ html, body {
     height: 100%;
 }
 
-header{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 7%;
-    background-color: white;
-}
-
 main {
     display: flex;
     justify-content: center;

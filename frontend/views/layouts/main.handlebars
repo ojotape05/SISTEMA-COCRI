@@ -11,6 +11,23 @@
 
     <link rel="stylesheet" type="text/css" media="screen"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <style>
+        header{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 7vh;
+            background-color: white;
+            position: fixed;
+            z-index: 9999;
+            width: 100%;
+        }
+
+        main{
+            padding-top: 10vh;
+        }
+    </style>    
 </head>
 
 <body>
@@ -38,7 +55,7 @@
 <script>
   var url_atual = window.location.href;
   split_url = url_atual.split("/")
-  currentpage = split_url[(split_url.length - 1)]
+  currentpage = split_url[(split_url.length - 1)].split("?")[0]
   
   document.querySelectorAll(".nav-link").forEach( a => {
     if(currentpage == ""){

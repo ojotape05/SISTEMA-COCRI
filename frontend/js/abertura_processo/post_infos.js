@@ -4,8 +4,9 @@ if (document.querySelector('#aberturaProcesso')) {
     elem.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      tipo_taxa = document.querySelectorAll("[name=tipoTaxa]").forEach( el => {
-        if(el.checked) return el.value
+      let tipo_taxa
+      document.querySelectorAll('[name="tipoTaxa"]').forEach( el => {
+        if(el.checked) tipo_taxa = el.value
       })
 
       var numMutuario = parseInt(document.querySelector("#numMutuarios").textContent);
@@ -14,7 +15,7 @@ if (document.querySelector('#aberturaProcesso')) {
         mutuarios.push({
           nome_mut: document.querySelectorAll("[name=mutuario]")[i].value,
           dt_nascimento_mut: document.querySelectorAll("[name=dt_nascimento_mut]")[i].value,
-          num_mut: document.querySelectorAll("[name=num_Mutuario]")[i].value,
+          cpf_cnpj: document.querySelectorAll("[name=num_Mutuario]")[i].value,
         })
       }
 
@@ -23,7 +24,7 @@ if (document.querySelector('#aberturaProcesso')) {
       for(var i = 0; i < numVendedores; i++){
         vendedores.push({
           nome_vend: document.querySelectorAll('[name="vendedor"]')[i].value,
-          num_vend: document.querySelectorAll('[name="num_Vendedor"]')[i].value
+          cpf_cnpj: document.querySelectorAll('[name="num_Vendedor"]')[i].value
         })
       }
 
@@ -59,10 +60,17 @@ if (document.querySelector('#aberturaProcesso')) {
         },
         body: JSON.stringify(json)
       })
+      .then( (res) => res.json() )
       .then( (res) => {
-        alert("Dados inseridos com sucesso!")
+        console.log(res)
+        if(res.sucess){
+          alert(res.message)
+          location.reload()
+        }else{
+          alert("Erro ao inserir dados, tente novamente")
+          console.log(res.message.detail)
+        }
       })
-      .catch( (res) => {console.log(res)})
 
     })
   }
