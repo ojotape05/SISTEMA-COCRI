@@ -45,6 +45,20 @@ module.exports = {
         }
 
         return retorno
+    },
+
+    ifCond: (v1,v2,options) => {
+        if(v1 == v2){
+            return options.fn(this)
+        }
+        return options.inverse(this)
+    },
+    
+    checkDocumento: (doc) => {
+        console.log("doc:",doc)
+        if(doc == true){
+            return "checked"
+        }
     }
     
 }

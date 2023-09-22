@@ -9,13 +9,16 @@ if (document.querySelector('#aberturaProcesso')) {
         if(el.checked) tipo_taxa = el.value
       })
 
+      const operacao =  document.querySelector("#tipodeoperacao").value
+
       var numMutuario = parseInt(document.querySelector("#numMutuarios").textContent);
-      var mutuarios = []
+      var mutuarios = [] 
       for(var i = 0; i < numMutuario; i++){
         mutuarios.push({
           nome_mut: document.querySelectorAll("[name=mutuario]")[i].value,
           dt_nascimento_mut: document.querySelectorAll("[name=dt_nascimento_mut]")[i].value,
           cpf_cnpj: document.querySelectorAll("[name=num_Mutuario]")[i].value,
+          tipo: getTipo(document.querySelectorAll("[name=num_Mutuario]")[i].value)
         })
       }
 
@@ -24,7 +27,8 @@ if (document.querySelector('#aberturaProcesso')) {
       for(var i = 0; i < numVendedores; i++){
         vendedores.push({
           nome_vend: document.querySelectorAll('[name="vendedor"]')[i].value,
-          cpf_cnpj: document.querySelectorAll('[name="num_Vendedor"]')[i].value
+          cpf_cnpj: document.querySelectorAll('[name="num_Vendedor"]')[i].value,
+          tipo: getTipo(document.querySelectorAll('[name="num_Vendedor"]')[i].value)
         })
       }
 
@@ -47,7 +51,7 @@ if (document.querySelector('#aberturaProcesso')) {
           nome_corresp: (document.getElementById("nomeCorrespondente").value != '' ? document.getElementById("nomeCorrespondente").value : null),
           cnpj_corresp: (document.getElementById("cnpjCorrespondente").value != '' ? document.getElementById("cnpjCorrespondente").value : null)
         },
-        operacao: document.querySelector("#tipodeoperacao").value,
+        operacao,
         mutuarios,
         vendedores
       }
@@ -62,7 +66,7 @@ if (document.querySelector('#aberturaProcesso')) {
       })
       .then( (res) => res.json() )
       .then( (res) => {
-        console.log(res)
+        console.log("data:", res)
         if(res.sucess){
           alert(res.message)
           location.reload()
@@ -74,4 +78,14 @@ if (document.querySelector('#aberturaProcesso')) {
 
     })
   }
-  
+
+
+  function getTipo(cpf_cnpj){
+    const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+    const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
+
+    if(cpfRegex.test(cpf_cnpj)){ return 'PF' }
+    if(cnpjRegex.test(cpf_cnpj)){ return 'PJ' }
+
+
+  }

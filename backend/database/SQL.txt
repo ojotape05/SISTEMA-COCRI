@@ -1,4 +1,4 @@
--- SQLINES LICENSE FOR EVALUATION USE ONLY
+
 CREATE TABLE processo 
 ( 
  id_processo INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,  
@@ -23,22 +23,24 @@ CREATE TABLE processo
  montagem BOOLEAN
 ); 
 
--- SQLINES LICENSE FOR EVALUATION USE ONLY
+
 CREATE TABLE mutuario 
 ( 
  cpf_cnpj VARCHAR(18) PRIMARY KEY,  
- nome_mut VARCHAR(200) NOT NULL,  
+ nome_mut VARCHAR(200) NOT NULL,
+ tipo CHAR(2), 
  dt_nascimento_mut DATE NOT NULL  
 ); 
 
--- SQLINES LICENSE FOR EVALUATION USE ONLY
+
 CREATE TABLE vendedor 
 ( 
  cpf_cnpj VARCHAR(18) PRIMARY KEY,  
+ tipo CHAR(2),
  nome_vend VARCHAR(200) NOT NULL  
 ); 
 
--- SQLINES LICENSE FOR EVALUATION USE ONLY
+
 CREATE TABLE venda 
 ( 
  vend_cpf_cnpj VARCHAR(18),  
@@ -46,15 +48,45 @@ CREATE TABLE venda
  UNIQUE (vend_cpf_cnpj,id_processo)
 ); 
 
--- SQLINES LICENSE FOR EVALUATION USE ONLY
+
 CREATE TABLE compra 
 ( 
  mut_cpf_cnpj VARCHAR(18),  
  id_processo INT,  
  UNIQUE (mut_cpf_cnpj,id_processo)
-); 
+);
+
+
+CREATE TABLE certidoes 
+( 
+ mut_cpf_cnpj VARCHAR(18),
+ vend_cpf_cnpj VARCHAR(18),
+ id_processo INT,
+ hist_junta_comercial BOOLEAN,  
+ cert_fgts BOOLEAN,  
+ cert_cnd BOOLEAN,  
+ cadast_cnpj BOOLEAN,  
+ cert_trabalhista BOOLEAN  
+);
+
+CREATE TABLE pendencia 
+( 
+ id_pendencia INT PRIMARY KEY,  
+ id_processo INT NOT NULL,
+ categoria VARCHAR(9) NOT NULL,
+ documento VARCHAR(150) NOT NULL,
+ descricao VARCHAR(1000),
+ etapa VARCHAR(30) NOT NULL,  
+ dt_registro DATE NOT NULL,
+ dt_retorno DATE,
+ resolvida BOOLEAN NOT NULL DEFAULT false  
+);
 
 ALTER TABLE venda ADD FOREIGN KEY(vend_cpf_cnpj) REFERENCES vendedor (cpf_cnpj);
 ALTER TABLE venda ADD FOREIGN KEY(id_processo) REFERENCES processo (id_processo);
 ALTER TABLE compra ADD FOREIGN KEY(mut_cpf_cnpj) REFERENCES mutuario (cpf_cnpj);
 ALTER TABLE compra ADD FOREIGN KEY(id_processo) REFERENCES processo (id_processo);
+ALTER TABLE certidoes ADD FOREIGN KEY(mut_cpf_cnpj) REFERENCES mutuario (cpf_cnpj);
+ALTER TABLE certidoes ADD FOREIGN KEY(id_processo) REFERENCES processo (id_processo);
+ALTER TABLE certidoes ADD FOREIGN KEY(vend_cpf_cnpj) REFERENCES vendedor (cpf_cnpj);
+ALTER TABLE pendencia ADD FOREIGN KEY(id_processo) REFERENCES processo (id_processo);

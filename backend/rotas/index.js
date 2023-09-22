@@ -35,6 +35,9 @@ function get_pages(app){
 function post_infos(app){
     const aberturaPost = require("./post/abertura")
     app.use('/abertura-post', aberturaPost)
+
+    const triagemPost = require("./post/triagem")
+    app.use('/triagem-post', triagemPost)
 }
 
 module.exports = {get_json,get_pages,post_infos}

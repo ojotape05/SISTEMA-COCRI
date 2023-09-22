@@ -22,6 +22,66 @@ if (document.querySelector('#cid')) {
   });
 }
 
+if(document.querySelectorAll('input[name="num_Mutuario"]')){
+  document.querySelectorAll('input[name="num_Mutuario"]').forEach( el => {
+    el.addEventListener("change" , (event) => {
+      validaCPF_CNPJ(event)
+    })
+  })
+}
+
+if(document.querySelectorAll('input[name="num_Vendedor"]')){
+  document.querySelectorAll('input[name="num_Vendedor"]').forEach( el => {
+    el.addEventListener("change" , (event) => {
+      validaCPF_CNPJ(event)
+    })
+  })
+}
+
+function validaCPF_CNPJ(event){
+
+  let cpf_cnpj = event.target.value
+  let operacao = document.getElementById("tipodeoperacao").value
+  console.log(cpf_cnpj,"|",operacao) //excluir
+
+  const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+  const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
+
+  if(operacao != "portab"){
+    const tipo = operacao.substring(0,2)
+    switch(tipo){
+      case 'pf':
+        console.log(!cpfRegex.test(cpf_cnpj))
+        if(!cpfRegex.test(cpf_cnpj)){
+          event.target.style.setProperty('border-color', 'red', 'important')
+          event.target.setCustomValidity("CPF Inválido")
+        }else{
+          event.target.style.setProperty('border-color', 'green', 'important')
+          event.target.setCustomValidity("")
+        }
+        break
+      case 'pj':
+        console.log(!cpfRegex.test(cpf_cnpj))
+        if(!cnpjRegex.test(cpf_cnpj)){
+          event.target.style.setProperty('border-color', 'red', 'important')
+          event.target.setCustomValidity("CNPJ Inválido")
+        }else{
+          event.target.style.setProperty('border-color', 'green', 'important')
+          event.target.setCustomValidity("")
+        } 
+        break
+    }
+  }else{
+    if(!cpfRegex.test(cpf_cnpj) || !cnpjRegex.test(cpf_cnpj)){
+      event.target.style.setProperty('border-color', 'red', 'important')
+      event.target.setCustomValidity("CPF/CNPJ Inválido")
+    }else{
+      event.target.style.setProperty('border-color', 'green', 'important')
+      event.target.setCustomValidity("")
+    }
+  }
+}
+
 if (document.querySelector('input[name="correspondente?"]')) {
   document.querySelectorAll('input[name="correspondente?"]').forEach((elem) => {
     elem.addEventListener("change", function (event) {

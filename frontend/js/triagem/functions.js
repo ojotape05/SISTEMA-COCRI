@@ -21,7 +21,7 @@ function sanfonado(elements){
                                 break
                             }
                         case "montagem":
-                            etapaDiv.style.height = "17rem"
+                            etapaDiv.style.height = "20rem"
                             break
                     }
                 }else{
